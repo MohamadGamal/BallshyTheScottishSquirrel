@@ -1,0 +1,292 @@
+@font-face{
+    font-family: robotoregular;
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+@font-face{
+    font-family: robotolight;
+    src: url("../fonts/Roboto-Light.ttf");
+}
+@font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.eot?57285040');
+    src: url('../font/fontello.eot?57285040#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff?57285040') format('woff'),
+       url('../font/fontello.ttf?57285040') format('truetype'),
+       url('../font/fontello.svg?57285040#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+  margin:0;
+  padding:0;
+  font-family: robotoregular;
+}
+html,body{
+  height: 100%;
+  width: 100%;
+}
+body{
+  display: table;
+  text-align: center;
+  background-image: url("../img/skulls.png");
+    
+}
+.container{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.window{
+  width: 750px;
+  height: 550px;
+  margin: auto;
+  padding: 10px;
+  border: 0;
+  background-color: #FFF;
+  z-index: -1;
+  box-shadow: 0px 0px 20px #ccc;
+}
+#menu{
+  display: table;
+}
+.menu-items{
+  display: table-cell;
+  vertical-align: middle;
+}
+.menu-items button{
+  display: block;
+  width: 200px;
+  height: 50px;
+  outline: 0;
+  margin: 10px auto;
+  font-size: 1.5em;
+  color: #057068;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px #ccc;
+}
+.menu-items button:hover{
+  box-shadow: 0px 0px 15px #999;
+}
+#logo{
+  width: 150px;
+}
+.menu-bar{
+  width: 100%;
+  height: 50px;
+  font-size: 1.5em;
+  line-height: 50px;
+  position: relative;
+}
+.menu-bar button{
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  outline: 0;
+  font-size: 30px;
+  background-color: #fff;
+  border: 0;
+  //border: 1px solid #ccc;
+  //box-shadow: 0px 0px 10px #ccc;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+}
+#lvl-container{
+    display: block;
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll
+}
+.menu-bar button:hover{
+  //box-shadow: 0px 0px 15px #999;
+  color: #F00;
+}
+.lvl-card{
+  display: inline-block;
+  width: 220px;
+  height: 160px;
+  margin: 10px;
+  border: 0px solid #ccc;
+  position: relative;
+  box-shadow: 0px 0px 10px #ccc;
+  animation: 2s lvl-show ease-in-out;
+}
+@keyframes lvl-show{
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+.lvl-poster{
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+.lvl-name{
+  display: block;
+  width: 100%;
+  height: 25%;
+  line-height: 40px;
+  font-size: 1.5em;
+  color: #f00;
+  font-weight: bold;
+  text-shadow: 0px 0px 5px #fff;
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: 0.5s lvl-leave;
+}
+.lvl-name:hover{
+  height: 50%;
+  line-height: 100px;
+  animation: 0.5s lvl-hover;
+}
+@keyframes lvl-leave{
+    0% { height: 50%; line-height: 100px; }
+    100% { height: 25%; line-height: 40px; }
+}
+@keyframes lvl-hover{
+    0% { height: 25%; line-height: 40px; }
+    100% { height: 50%; line-height: 100px; }
+}
+.lvl-card, .lvl-poster, .lvl-name{
+  cursor: pointer;
+}
+.lvl-lock{
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100%;
+  line-height: 160px;
+  color: #f00;
+  font-size: 4em;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#player-controls{
+    display: block;
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+#profile{
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    border-radius: 25px;
+    color: #FFF;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+}
+#score-lable{
+    width: 80px;
+    font-size: 25px;
+    font-weight: bold;
+    left: 150px;
+}
+#score{
+    width: 100px;
+    color: #F00;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+    left: 230px;
+}
+.player-btn{
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 30px;
+    position: absolute;
+}
+#btn-pause{
+    right: 40px;
+}
+#btn-sound{
+    right: 80px;
+}
+#btn-music{
+    right: 120px;
+}
+.player-btn:hover{
+    color: #F00;
+    cursor: pointer;
+}
+#lives{
+    font-size: 20px;
+    width: 120px;
+    left: 40px;
+    color: #F00;
+}
+#player-home{
+    right: 0;
+}
+#play{
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.5);
+}
+#player{
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+#gamecanvas{
+  border:1px solid #ccc;
+}
+#player-splash{
+    display: block;
+    width: 750px;
+    height: 500px;
+    position: absolute;
+    opacity: 0.75;
+    background-color: #000;
+    animation: 0.5s player-splash ease-in-out;
+}
+@keyframes player-splash{
+    0%{ opacity: 0; }
+    100%{ opacity: 0.75; }
+}
+#player-splash-control{
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin: 125px 250px;
+    line-height: 250px;
+    font-size: 150px;
+    color: #fff;
+    position: absolute;
+    animation: 0.5s player-btn ease-in-out;
+}
+#player-splash-control:hover{
+    color: #F00;
+    cursor: pointer;
+}
+@keyframes player-btn{
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
+}
+#splash{
+  position: relative;
+}
+#splash img{
+  width: 300px;
+}
+#progress-bar{
+  width: 600px;
+  height: 25px;
+  margin: auto 60px;
+  background-color: #ccc;
+  position: absolute;
+  bottom: 15%;
+}
+#bar{
+  background-color: #057068;
+  width: 1%;
+  height: 25px;
+}

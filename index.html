@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Game</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+      <link rel="stylesheet" type="text/css" href="css/fontello-embedded.css">
+      <link rel="stylesheet" type="text/css" href="css/bg-animation.css">
+    </head>
+    <body>
+      <div class="container">
+        <div id="splash" class="window" style="display:none">
+          <img src="img/logo.jpg" alt="" class="splash-logo">
+          <div id="progress-bar">
+            <div id="bar"></div>
+          </div>
+        </div>
+        <div id="menu" class="window" style="display:none">
+          <div class="menu-items">
+            <img src="img/logo.jpg" id="logo" alt="">
+            <button onclick="navigateFromTo('menu','play')">Start <i class="icon-gamepad"></i></button>
+            <button onclick="navigateFromTo('menu','level')">Levels  <i class="icon-check"></i></button>
+            <button>Sounds <i class="icon-volume-up"></i></button>
+            <button>Music <i class="icon-music"></i></button>
+          </div>
+        </div>
+        <div id="level" class="window" style="display:none">
+          <div class="menu-bar">
+            <button onclick="navigateFromTo('level','menu','table')">
+            <i class="icon-home-1"></i>
+            </button>
+            <span>Levels</span>
+          </div>
+          <div id="lvl-container">
+            <div class="lvl-card" onclick="navigateFromTo('level','play')">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 1</span>
+            </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 2</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 3</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 4</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 5</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 6</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 7</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+            <div class="lvl-card">
+            <img src="img/poster.png" alt="" class="lvl-poster">
+            <span class="lvl-name">Level 8</span>
+            <span class="lvl-lock"><i class="icon-lock"></i></span>
+          </div>
+          </div>
+        </div>
+        <div id="play" class="window">
+          <div id="player-controls">
+              <span id="profile" class="player-btn">
+                  <i class="icon-user-1"></i>
+              </span>
+              <span id="lives" class="player-btn">
+                  <i class="icon-heart-2"></i>
+                  <i class="icon-heart-2"></i>
+                  <i class="icon-heart-2"></i>
+              </span>
+              <span id="score-lable" class="player-btn">Score:</span>
+              <span id="score" class="player-btn">0</span>
+              <span id="btn-pause" class="player-btn" onclick="togglePlaying()"><i id="play-btn" class="icon-play"></i></span>
+              <span id="btn-sound" class="player-btn"><i class="icon-volume-up"></i></span>
+              <span id="btn-music" class="player-btn"><i class="icon-music"></i></span>
+              <span id="player-home" class="player-btn" onclick="navigateFromTo('play','menu','table')">
+                  <i class="icon-home-1"></i>
+              </span>
+          </div>
+          <div id="player">
+            <div id="player-splash"></div>
+            <div id="player-splash-control" onclick="togglePlaying()">
+                <i class="icon-play-circled2"></i>
+            </div>
+            <canvas id="gamecanvas" width="750" height="500"></canvas>  
+            <div id="clouds">
+                <div class="cloud x1"></div>
+                <div class="cloud x2"></div>
+                <div class="cloud x3"></div>
+                <div class="cloud x4"></div>
+                <div class="cloud x5"></div>
+                <div class="cloud x6"></div>
+                <div class="cloud x7"></div>
+                <div class="cloud x8"></div>
+            </div>
+          </div>
+        </div>
+        <div id="user" class="window" style="display:none">
+
+        </div>
+      </div>
+      <script>
+      function updateLives(value){
+          var lives = document.getElementById("lives").children;
+          for(var i=0; i<lives.length; i++){
+              if(i<value)
+                  lives[i].className = "icon-heart-2";
+              else
+                  lives[i].className = "icon-heart-empty-2";
+          }
+      }
+      function updateScore(score){
+          var scoreDiv = document.getElementById("score");
+          scoreDiv.textContent = score.toString();
+      }
+      function navigateFromTo(sender,id,display='block'){
+        document.getElementById(sender).style.display='none';
+        document.getElementById(id).style.display=display;
+      }
+      function loading() {
+        var elem = document.getElementById("bar");
+        var width = 1;
+        var id = setInterval(progress, 25);
+        function progress() {
+          if (width >= 100) {
+            clearInterval(id);
+            navigateFromTo('splash','menu','table');
+          } else {
+            width++;
+            elem.style.width = width + '%';
+          }
+        }
+      }
+      //loading();
+      </script>
+      <script src="source/levels2.js"></script>
+      <script src="source/size.js"></script>
+      <script src="source/accel.js"></script>
+      <script src="source/line.js"></script>
+      <script src="source/point.js"></script>
+      <script src="source/rect.js"></script>
+      <script src="source/hithelpers.js"></script>
+      <script src="source/ball.js"></script>
+      <script src="source/paddle.js"></script>
+      <script src="source/Board.js"></script>
+      <script src="source/levels.js"></script>
+      <script src="source/game2.js"></script>
+      <script src="source/runloop.js"></script>
+    </body>
+</html>
