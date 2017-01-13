@@ -1,6 +1,6 @@
 var dimensions = new Size (750,500);
-var level =0;
-var board =levelGenerator(dimensions,1);
+var level =2;
+var board =levelGenerator(dimensions,2);
 var canvas = document.getElementById("gamecanvas");
 
 var ctx = canvas.getContext("2d");
@@ -32,8 +32,9 @@ function togglePlaying() {
 
 function collisionDetecting(ball, bricks, board) {
 
-
+var tempa=ball.accel;
 	if(collisionDetectingBricks(ball, bricks))
+	
 		return;
 	collisionDetectingFrames(ball, board);
 
@@ -42,7 +43,12 @@ function collisionDetecting(ball, bricks, board) {
 function collisionDetectingFrames(ball, board) {
 
 	var hitPoint;
-	var allsides = [new Rect(0, 0, 4, game.dimensions.width), new Rect(0, 0, game.dimensions.width, 4), new Rect(game.dimensions.width, 0, 4, game.dimensions.height)];
+	var allsides = [new Rect(0, 0, 1, game.dimensions.width), new Rect(0, 0, game.dimensions.width, 1), new Rect(game.dimensions.width, 0, 1, game.dimensions.height),
+	 new Rect(0, game.dimensions.height, game.dimensions.width, 1)
+	
+	
+	
+	];
 	//var frame = this.frame
 
 	// console.log("IN",hitPoint);
